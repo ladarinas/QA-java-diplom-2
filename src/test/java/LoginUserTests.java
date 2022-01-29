@@ -25,7 +25,7 @@ public class LoginUserTests {
     }
 
     @Test
-    public void loginUserWithIncorrectPassword() {
+    public void loginUserWithIncorrectPasswordTest() {
         User userData = User.getRandom();
         userClient.create(userData);
         Response response = userClient.login(userData.email, "test");

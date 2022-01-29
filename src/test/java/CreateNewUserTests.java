@@ -35,7 +35,7 @@ public class CreateNewUserTests {
     }
 
     @Test
-    public void createNewUser() {
+    public void createNewUserTest() {
         Response response = userClient.create(user);
         assertEquals(statusCode, response.statusCode());
         Assert.assertEquals(message, response.path("message"));

@@ -14,7 +14,7 @@ public class EditUserTests {
     }
 
     @Test
-    public void editUserPasswordWithAuth() {
+    public void editUserPasswordWithAuthTest() {
         User userData = User.getRandom();
         Response user = userClient.create(userData);
         userClient.login(userData.email, userData.password);
@@ -25,7 +25,7 @@ public class EditUserTests {
     }
 
     @Test
-    public void editUserUsernameWithAuth() {
+    public void editUserUsernameWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
         userClient.login(userData.email, userData.password);
@@ -36,7 +36,7 @@ public class EditUserTests {
     }
 
     @Test
-    public void editUserEmailWithAuth() {
+    public void editUserEmailWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
         userClient.login(userData.email, userData.password);
@@ -47,7 +47,7 @@ public class EditUserTests {
     }
 
     @Test
-    public void editUserAlreadyExistsEmailWithAuth() {
+    public void editUserAlreadyExistsEmailWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
         String newEmail = RandomStringUtils.randomAlphabetic(10) + "@yandex.ru";
@@ -60,7 +60,7 @@ public class EditUserTests {
     }
 
     @Test
-    public void editUserPasswordWithoutAuth() {
+    public void editUserPasswordWithoutAuthTest() {
         User userData = User.getRandom();
         userClient.create(userData);
         String newPassword = RandomStringUtils.randomAlphabetic(10);
@@ -71,7 +71,7 @@ public class EditUserTests {
     }
 
     @Test
-    public void editUserUsernameWithoutAuth() {
+    public void editUserUsernameWithoutAuthTest() {
         User userData = User.getRandom();
         userClient.create(userData);
         String newUsername = RandomStringUtils.randomAlphabetic(10);
@@ -82,7 +82,7 @@ public class EditUserTests {
     }
 
     @Test
-    public void editUserEmailWithoutAuth() {
+    public void editUserEmailWithoutAuthTest() {
         User userData = User.getRandom();
         userClient.create(userData);
         String newEmail = RandomStringUtils.randomAlphabetic(10) + "@yandex.ru";

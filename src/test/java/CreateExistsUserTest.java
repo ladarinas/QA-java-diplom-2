@@ -13,7 +13,7 @@ public class CreateExistsUserTest {
     }
 
     @Test
-    public void createExistsUser() {
+    public void createExistsUserTest() {
         User userData = User.getRandom();
         userClient.create(userData);
         Response response = userClient.create(userData);

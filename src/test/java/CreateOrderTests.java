@@ -19,7 +19,7 @@ public class CreateOrderTests {
     }
 
     @Test
-    public void createOrderWithAuth() {
+    public void createOrderWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
         List<String> ingredients  = ingredientsClient.getIngredients().path("data._id");
@@ -29,14 +29,14 @@ public class CreateOrderTests {
     }
 
     @Test
-    public void createOrderWithoutAuth() {
+    public void createOrderWithoutAuthTest() {
         List<String> ingredients  = ingredientsClient.getIngredients().path("data._id");
         Response response = orderClient.createOrder(ingredients, "");
         assertEquals(200, response.statusCode());
         assertTrue(response.path("success"));
     }
     @Test
-    public void createOrderWithoutIngredients() {
+    public void createOrderWithoutIngredientsTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
         Response response = orderClient.createOrder(null, accessToken);
@@ -46,7 +46,7 @@ public class CreateOrderTests {
     }
 
     @Test
-    public void createOrderWithIncorrectIngredient() {
+    public void createOrderWithIncorrectIngredientTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
         Response response = orderClient.createOrder(Collections.singletonList("ingredient"), accessToken);

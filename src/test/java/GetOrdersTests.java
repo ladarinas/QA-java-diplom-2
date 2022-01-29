@@ -21,7 +21,7 @@ public class GetOrdersTests {
     }
 
     @Test
-    public void getOrderWithAuth() {
+    public void getOrderWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
         List<String> ingredients  = ingredientsClient.getIngredients().path("data._id");
@@ -33,7 +33,7 @@ public class GetOrdersTests {
     }
 
     @Test
-    public void getOrderWithoutAuth() {
+    public void getOrderWithoutAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
         List<String> ingredients  = ingredientsClient.getIngredients().path("data._id");
