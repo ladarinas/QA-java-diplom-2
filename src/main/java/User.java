@@ -5,25 +5,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class User {
+    public String email;
+    public String password;
+    public String username;
 
-    public Map<String,String> getRandom(){
-        String email = RandomStringUtils.randomAlphabetic(5) + "@yandex.ru";
-        String password = RandomStringUtils.randomAlphabetic(10);
-        String username = RandomStringUtils.randomAlphabetic(10);
-        Map<String, String> inputDataMap = new HashMap<>();
-        inputDataMap.put("email", email);
-        inputDataMap.put("password", password);
-        inputDataMap.put("username", username);
-        return inputDataMap;
+    public User() {
     }
 
-    public Map<String, String> create(){
-        String email = RandomStringUtils.randomAlphabetic(5) + "@yandex.ru";
-        String password = RandomStringUtils.randomAlphabetic(10);
-        String username = RandomStringUtils.randomAlphabetic(10);
+    public User(String email, String password, String username) {
+        this.email = email;
+        this.password = password;
+        this.username = username;
+    }
+
+    public static User getRandom(){
+        final String email = RandomStringUtils.randomAlphabetic(10) + "@yandex.ru";
+        final String password = RandomStringUtils.randomAlphabetic(10);
+        final String username = RandomStringUtils.randomAlphabetic(10);
+        return new User(email, password, username);
+    }
+
+
+    public Map<String, String> createRandomUser(){
+        User userData = User.getRandom();
         UserClient userClient = new UserClient();
-        Response response = userClient.create(email, password, username);
-        String accessToken = response.path("accessToken");
+        String accessToken = userClient.create(userData.email, userData.password, userData.username).path("accessToken");
         Map<String, String> inputDataMap = new HashMap<>();
         inputDataMap.put("email", email);
         inputDataMap.put("password", password);
