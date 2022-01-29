@@ -24,6 +24,21 @@ public class UserClient extends RestAssuredClient {
     }
 
     @Step
+    public Response create(User user) {
+        JSONObject requestBodyJson = new JSONObject();
+        String requestBody = requestBodyJson
+                .put("email", user.email)
+                .put("password", user.password)
+                .put("name", user.username)
+                .toString();
+        return given()
+                .spec(getBaseSpec())
+                .body(requestBody)
+                .when()
+                .post(AUTH_PATH + "register/");
+    }
+
+    @Step
     public Response login(String email, String password) {
         JSONObject requestBodyJson = new JSONObject();
         String requestBody = requestBodyJson
