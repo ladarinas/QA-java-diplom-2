@@ -1,8 +1,4 @@
-import io.restassured.response.Response;
 import org.apache.commons.lang3.RandomStringUtils;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class User {
     public String email;
@@ -25,16 +21,33 @@ public class User {
         return new User(email, password, username);
     }
 
+    public User setEmailAndPassword(String email, String password) {
+        this.email = email;
+        this.password = password;
+        return this;
+    }
 
-    public Map<String, String> createRandomUser(){
-        User userData = User.getRandom();
-        UserClient userClient = new UserClient();
-        String accessToken = userClient.create(userData.email, userData.password, userData.username).path("accessToken");
-        Map<String, String> inputDataMap = new HashMap<>();
-        inputDataMap.put("email", email);
-        inputDataMap.put("password", password);
-        inputDataMap.put("name", username);
-        inputDataMap.put("accessToken", accessToken);
-        return inputDataMap;
+    public User setEmailAndName(String email, String username) {
+        this.email = email;
+        this.username = username;
+        return this;
+    }
+
+    public User setNameAndPassword(String username, String password) {
+        this.username = username;
+        this.password = password;
+        return this;
+    }
+
+    public static User getWithEmailAndPassword() {
+        return new User().setEmailAndPassword(RandomStringUtils.randomAlphabetic(10) + "@yandex.ru", RandomStringUtils.randomAlphabetic(10));
+    }
+
+    public static User getWithEmailAndName() {
+        return new User().setEmailAndName(RandomStringUtils.randomAlphabetic(10) + "@yandex.ru", RandomStringUtils.randomAlphabetic(10));
+    }
+
+    public static User getWithNameAndPassword() {
+        return new User().setNameAndPassword(RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphabetic(10));
     }
 }
