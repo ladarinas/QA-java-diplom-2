@@ -15,8 +15,8 @@ public class CreateExistsUserTest {
     @Test
     public void createExistsUser() {
         User userData = User.getRandom();
-        userClient.create(userData.email, userData.password, userData.username);
-        Response response = userClient.create(userData.email, userData.password, userData.username);
+        userClient.create(userData);
+        Response response = userClient.create(userData);
         assertEquals(403, response.statusCode());
         assertEquals("User already exists", response.path("message"));
     }
