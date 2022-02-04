@@ -1,3 +1,4 @@
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
@@ -14,6 +15,7 @@ public class EditUserTests {
     }
 
     @Test
+    @Description("Изменение пароля с авторизацией")
     public void editUserPasswordWithAuthTest() {
         User userData = User.getRandom();
         Response user = userClient.create(userData);
@@ -25,6 +27,7 @@ public class EditUserTests {
     }
 
     @Test
+    @Description("Изменение имени с авторизацией")
     public void editUserUsernameWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
@@ -36,6 +39,7 @@ public class EditUserTests {
     }
 
     @Test
+    @Description("Изменение email с авторизацией")
     public void editUserEmailWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
@@ -47,6 +51,7 @@ public class EditUserTests {
     }
 
     @Test
+    @Description("Нельзя изменить email на уже существующий")
     public void editUserAlreadyExistsEmailWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
@@ -60,6 +65,7 @@ public class EditUserTests {
     }
 
     @Test
+    @Description("Нельзя изменить пароль без авторизации")
     public void editUserPasswordWithoutAuthTest() {
         User userData = User.getRandom();
         userClient.create(userData);
@@ -71,6 +77,7 @@ public class EditUserTests {
     }
 
     @Test
+    @Description("Нельзя изменить имя без авторизации")
     public void editUserUsernameWithoutAuthTest() {
         User userData = User.getRandom();
         userClient.create(userData);
@@ -82,6 +89,7 @@ public class EditUserTests {
     }
 
     @Test
+    @Description("Нельзя изменить email без авторизации")
     public void editUserEmailWithoutAuthTest() {
         User userData = User.getRandom();
         userClient.create(userData);

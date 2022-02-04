@@ -1,3 +1,4 @@
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,7 @@ public class GetOrdersTests {
     }
 
     @Test
+    @Description("Получение заказа с авторизацией")
     public void getOrderWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
@@ -33,6 +35,7 @@ public class GetOrdersTests {
     }
 
     @Test
+    @Description("Нельзя получить заказ без авторизации")
     public void getOrderWithoutAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");

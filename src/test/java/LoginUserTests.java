@@ -1,4 +1,5 @@
 
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @Description("Залогиниться с корректными данными")
     public void loginUser() {
         User userData = User.getRandom();
         userClient.create(userData);
@@ -25,6 +27,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @Description("Нельзя залогиниться с некорректным паролем")
     public void loginUserWithIncorrectPasswordTest() {
         User userData = User.getRandom();
         userClient.create(userData);

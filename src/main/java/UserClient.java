@@ -8,7 +8,7 @@ public class UserClient extends RestAssuredClient {
 
     private static final String AUTH_PATH = "api/auth/";
 
-    @Step
+    @Step("Создать пользователя")
     public Response create(String email, String password, String username) {
         JSONObject requestBodyJson = new JSONObject();
         String requestBody = requestBodyJson
@@ -23,7 +23,7 @@ public class UserClient extends RestAssuredClient {
                 .post(AUTH_PATH + "register/");
     }
 
-    @Step
+    @Step("Создать пользователя")
     public Response create(User user) {
         JSONObject requestBodyJson = new JSONObject();
         String requestBody = requestBodyJson
@@ -38,7 +38,7 @@ public class UserClient extends RestAssuredClient {
                 .post(AUTH_PATH + "register/");
     }
 
-    @Step
+    @Step("Залогиниться")
     public Response login(String email, String password) {
         JSONObject requestBodyJson = new JSONObject();
         String requestBody = requestBodyJson
@@ -52,7 +52,7 @@ public class UserClient extends RestAssuredClient {
                 .post(AUTH_PATH + "login/");
     }
 
-    @Step
+    @Step("Редактировать пользователя")
     public Response edit(String email, String password, String username, String token) {
         JSONObject requestBodyJson = new JSONObject();
         String requestBody = requestBodyJson

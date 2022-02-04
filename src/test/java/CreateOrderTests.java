@@ -1,3 +1,4 @@
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @Description("Создание заказа с авторизацией")
     public void createOrderWithAuthTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
@@ -29,13 +31,16 @@ public class CreateOrderTests {
     }
 
     @Test
+    @Description("Создание заказа без авторизации")
     public void createOrderWithoutAuthTest() {
         List<String> ingredients  = ingredientsClient.getIngredients().path("data._id");
         Response response = orderClient.createOrder(ingredients, "");
         assertEquals(200, response.statusCode());
         assertTrue(response.path("success"));
     }
+
     @Test
+    @Description("Нельзя создать заказ без ингредиентов")
     public void createOrderWithoutIngredientsTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");
@@ -46,6 +51,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @Description("Нельзя создать заказа с несуществующим ингредиентом")
     public void createOrderWithIncorrectIngredientTest() {
         User userData = User.getRandom();
         String accessToken = userClient.create(userData).getBody().path("accessToken");

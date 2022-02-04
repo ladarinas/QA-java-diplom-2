@@ -1,3 +1,4 @@
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,7 @@ public class CreateExistsUserTest {
     }
 
     @Test
+    @Description("Нельзя создать уже существующего пользователя")
     public void createExistsUserTest() {
         User userData = User.getRandom();
         userClient.create(userData);

@@ -1,3 +1,4 @@
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,6 +36,7 @@ public class CreateNewUserTests {
     }
 
     @Test
+    @Description("Создание нового пользователя")
     public void createNewUserTest() {
         Response response = userClient.create(user);
         assertEquals(statusCode, response.statusCode());
